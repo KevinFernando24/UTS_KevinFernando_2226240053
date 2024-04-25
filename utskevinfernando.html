@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulasi Pembayaran THR</title>
+</head>
+<body>
+       <h1 style="font-size: medium;text-align: left ;">Nama : Kevin Fernando, NPM : 2226240053</h1>
+</body>
+<body style="text-align: center;">
+    <h2 style="text-align: center;">Simulasi Pembayaran THR</h2>
+    <form style="font-weight: bolder;text-align: center;">
+        <label for="gajiPokok">Gaji Pokok:</label>
+        <input type="number" id="gajiPokok" name="gajiPokok"><br><br>
+        
+        <label for="tunjanganTetap">Tunjangan Tetap:</label>
+        <input type="number" id="tunjanganTetap" name="tunjanganTetap"><br><br>
+        
+        <label for="masaKerja">Masa Kerja (bulan):</label>
+        <input type="number" id="masaKerja" name="masaKerja"><br><br>
+        
+        <button type="button" id="prosesButton">Hitung Pembayaran</button>
+    </form>
+
+    <div id="output"></div>
+
+    <script>
+        function hitungTotalGaji(gajiPokok, tunjanganTetap) {
+            return gajiPokok + tunjanganTetap;
+        }
+
+        function hitungTHR(totalGaji, masaKerja) {
+            if (masaKerja >= 12) {
+                return totalGaji;
+            } else {
+                return (masaKerja / 12) * totalGaji;
+            }
+        }
+
+        function hitungPPH(totalGaji, ptkp) {
+            const penghasilanKenaPajak = Math.max(totalGaji - ptkp, 0);
+            const tarifPPH = 0.05; 
+            return penghasilanKenaPajak * tarifPPH;
+        }
+
+        function tampilkanOutput() {
+            const gajiPokok = parseFloat(document.getElementById('gajiPokok').value);
+            const tunjanganTetap = parseFloat(document.getElementById('tunjanganTetap').value);
+            const masaKerja = parseInt(document.getElementById('masaKerja').value);
+
+            const ptkp = 4500000;
+
+            const totalGaji = hitungTotalGaji(gajiPokok, tunjanganTetap);
+
+            const thr = hitungTHR(totalGaji, masaKerja);
+
+            const pph = hitungPPH(totalGaji, ptkp);
+
+            const totalPembayaran = thr + pph;
+
+            const output = document.getElementById('output');
+            output.innerHTML = `THR: Rp ${thr}<br>PPH: Rp ${pph}<br>Total Pembayaran: Rp ${totalPembayaran}`;
+        }
+
+        document.getElementById('prosesButton').addEventListener('click', tampilkanOutput);
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Look Into Yourself</h1>
+    <p>
+        <b><u>Look into yourself, </u></b><br>
+        Release your heart free<br>
+        Look into yourself,<br>
+        and be the master of your destiny
+    </p>
+</body>
+</html>
